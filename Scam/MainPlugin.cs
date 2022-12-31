@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using PlayerHandler = Exiled.Events.Handlers.Player;
+using Scp914Handler = Exiled.Events.Handlers.Scp914;
+using ServerHandler = Exiled.Events.Handlers.Server;
 
 namespace Scam
 {
@@ -19,15 +21,29 @@ namespace Scam
             Handlers = new(this);
 
             PlayerHandler.InteractingDoor += Handlers.OnInteractingDoor;
+            PlayerHandler.Spawned += Handlers.OnSpawned;
             PlayerHandler.FailingEscapePocketDimension += Handlers.OnFailingEscapePocketDimension;
+            PlayerHandler.ThrowingRequest += Handlers.OnThrowingRequest;
 
-            base.OnDisabled();
+            Scp914Handler.UpgradingPickup += Handlers.OnUpgrading;
+            Scp914Handler.UpgradingInventoryItem += Handlers.OnUpgradingInventory;
+
+            ServerHandler.RestartingRound += Handlers.OnRoundRestart;
+
+            base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
-            PlayerHandler.InteractingDoor += Handlers.OnInteractingDoor;
-            PlayerHandler.FailingEscapePocketDimension += Handlers.OnFailingEscapePocketDimension;
+            PlayerHandler.InteractingDoor -= Handlers.OnInteractingDoor;
+            PlayerHandler.Spawned -= Handlers.OnSpawned;
+            PlayerHandler.FailingEscapePocketDimension -= Handlers.OnFailingEscapePocketDimension;
+            PlayerHandler.ThrowingRequest -= Handlers.OnThrowingRequest;
+
+            Scp914Handler.UpgradingPickup -= Handlers.OnUpgrading;
+            Scp914Handler.UpgradingInventoryItem -= Handlers.OnUpgradingInventory;
+
+            ServerHandler.RestartingRound -= Handlers.OnRoundRestart;
 
             Handlers = null;
             base.OnDisabled();
