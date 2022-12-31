@@ -93,7 +93,7 @@ namespace Scam
 
         public void OnDying(DyingEventArgs ev)
         {
-            if (ev.Player.IsHuman)
+            if (ev.Player.IsHuman && Random.value >= .5)
             {
                 Item item = ev.Player.AddItem(GetScamCardType(ev.Player.Role.Type, ev.Player.CurrentRoom));
                 ScamCards.Add(item.Serial);
