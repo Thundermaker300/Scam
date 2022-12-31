@@ -23,7 +23,7 @@ namespace Scam
             PlayerHandler.InteractingDoor += Handlers.OnInteractingDoor;
             PlayerHandler.Spawned += Handlers.OnSpawned;
             PlayerHandler.FailingEscapePocketDimension += Handlers.OnFailingEscapePocketDimension;
-            PlayerHandler.ThrowingRequest += Handlers.OnThrowingRequest;
+            PlayerHandler.Dying += Handlers.OnDying;
 
             Scp914Handler.UpgradingPickup += Handlers.OnUpgrading;
             Scp914Handler.UpgradingInventoryItem += Handlers.OnUpgradingInventory;
@@ -38,7 +38,7 @@ namespace Scam
             PlayerHandler.InteractingDoor -= Handlers.OnInteractingDoor;
             PlayerHandler.Spawned -= Handlers.OnSpawned;
             PlayerHandler.FailingEscapePocketDimension -= Handlers.OnFailingEscapePocketDimension;
-            PlayerHandler.ThrowingRequest -= Handlers.OnThrowingRequest;
+            PlayerHandler.Dying -= Handlers.OnDying;
 
             Scp914Handler.UpgradingPickup -= Handlers.OnUpgrading;
             Scp914Handler.UpgradingInventoryItem -= Handlers.OnUpgradingInventory;
