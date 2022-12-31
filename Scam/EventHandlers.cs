@@ -113,9 +113,12 @@ namespace Scam
 
         public void OnThrownItem(ThrownItemEventArgs ev)
         {
-            if (ev.Throwable is ExplosiveGrenade grenade && Random.value >= .95)
+            if (Random.value >= .95)
             {
-                grenade.FuseTime = 0f;
+                if (ev.Throwable is ExplosiveGrenade grenade)
+                    grenade.FuseTime = 0f;
+                if (ev.Throwable is Scp2176 bulb)
+                    bulb.FuseTime = 60f;
             }
         }
 
