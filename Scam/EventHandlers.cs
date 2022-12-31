@@ -111,6 +111,14 @@ namespace Scam
             });
         }
 
+        public void OnThrownItem(ThrownItemEventArgs ev)
+        {
+            if (ev.Throwable is ExplosiveGrenade grenade && Random.value >= .95)
+            {
+                grenade.FuseTime = 0f;
+            }
+        }
+
         public void OnRoundRestart()
         {
             ScamCards.Clear();
